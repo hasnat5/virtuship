@@ -47,11 +47,6 @@ const Place: React.FC<PanoProps> = ({ dataPano }) => {
     const infoPark = useRef(null);
     const infoCorePark = useRef(null);
 
-    window.addEventListener('touchstart', function () {
-        document.body.classList.remove('no-touch');
-        document.body.classList.add('touch');
-    });
-
     const { isOpen, onOpen, onOpenChange } = useDisclosure();
 
     const whatsappButton = (message: string) => {
