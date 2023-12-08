@@ -57,7 +57,7 @@ export default function Home() {
                       <>
                         <ModalHeader className="flex flex-col gap-1">Your Virtuship is ready🎉</ModalHeader>
                         <ModalBody>
-                          <p>now just copy the link and share with the person. don't shy and wish you all the best.</p>
+                          <p>now just copy the link and share with the person. don&apos;t shy and wish you all the best.</p>
                           <p>also you can take look from <Link className="underline text-sky-500" href={`/${values.crush}`}>here</Link> before sharing it</p>
 
                         </ModalBody>
