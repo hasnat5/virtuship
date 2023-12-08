@@ -10,14 +10,40 @@ const config: Config = {
   ],
   theme: {
     extend: {
+      colors: {
+        primary: '#3A1C71',
+        secondary: '#D76D77',
+        tertiary: '#FFAD7B',
+      },
       backgroundImage: {
         'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
         'gradient-conic':
           'conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))',
       },
+      fontFamily: {
+        metafiz: ['var(--font-metafiz)'],
+        centra: ['var(--font-centra)'],
+      },
     },
   },
-  plugins: [nextui()],
+  plugins: [
+    nextui({
+      themes: {
+        light: {
+          colors: {
+            background: "#FFFFFF", // or DEFAULT
+            foreground: "#11181C", // or 50 to 900 DEFAULT
+            primary: {
+              //... 50 to 900
+              foreground: "#FFFFFF",
+              DEFAULT: "#D76D77",
+            },
+            // ... rest of the colors
+          },
+        },
+      },
+    })
+  ],
 
 }
 export default config

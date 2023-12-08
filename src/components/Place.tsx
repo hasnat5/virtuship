@@ -39,15 +39,19 @@ interface PanoProps {
             }[];
         }[];
     };
+
+    crush: string;
 }
 
-const Place: React.FC<PanoProps> = ({ dataPano }) => {
+const Place: React.FC<PanoProps> = ({ dataPano, crush }) => {
     const panoRef = useRef(null);
     const infoSchool = useRef(null);
     const infoPark = useRef(null);
     const infoCorePark = useRef(null);
 
     const { isOpen, onOpen, onOpenChange } = useDisclosure();
+
+
 
     const whatsappButton = (message: string) => {
         const phoneNumber = '628996944806'; // Replace with your WhatsApp number
@@ -57,6 +61,7 @@ const Place: React.FC<PanoProps> = ({ dataPano }) => {
 
         // Open the WhatsApp link
         window.open(url, '_blank');
+
     };
 
     useEffect(() => {
@@ -94,7 +99,6 @@ const Place: React.FC<PanoProps> = ({ dataPano }) => {
                     (120 * Math.PI) / 180
                 );
                 const view = new Marzipano.RectilinearView(initialViewParameters, limiter);
-                // const geometry = new Marzipano.CubeGeometry(levels);
                 const geometry = new Marzipano.EquirectGeometry(levels);
 
                 const scene = viewer.createScene({
@@ -194,12 +198,6 @@ const Place: React.FC<PanoProps> = ({ dataPano }) => {
                 // stopAutorotate();
                 // scene.view.setParameters(scene.initialViewParameters);
                 scene.scene.switchTo();
-
-                // if (scene && scene.scene) {
-                //     scene.scene.switchTo();
-                // } else {
-                //     console.error("Tidak dapat beralih ke adegan karena 'scene' tidak terdefinisi atau 'null'.");
-                // }
                 // startAutorotate();
                 // updateSceneName(scene);
                 // updateSceneList(scene);
@@ -210,7 +208,6 @@ const Place: React.FC<PanoProps> = ({ dataPano }) => {
 
 
             const containerSchool = panoScenes[0].scene.hotspotContainer();
-
             if (containerSchool) {
                 // INFOSPOT 
                 containerSchool.createHotspot(infoSchool.current, { yaw: -0.053460715856861185, pitch: 0.07998189071985529 });
@@ -220,7 +217,6 @@ const Place: React.FC<PanoProps> = ({ dataPano }) => {
             }
 
             const containerPark = panoScenes[1].scene.hotspotContainer();
-
             if (containerPark) {
                 containerPark.createHotspot(infoPark.current, { yaw: -0.533184046024548, pitch: 0.22814973791185622 });
                 containerPark.createHotspot(infoCorePark.current, { yaw: 2.9785878977200912, pitch: 0.014763598534795364 });
@@ -228,7 +224,6 @@ const Place: React.FC<PanoProps> = ({ dataPano }) => {
             } else {
                 console.error("Element with ID 'iframespot' not found.");
             }
-
 
             // // CHECK COORDS
             // var pano = panoRef.current;
@@ -242,6 +237,8 @@ const Place: React.FC<PanoProps> = ({ dataPano }) => {
                 viewer.destroy();
             };
         }
+
+
     }, [dataPano]);
 
     return (
@@ -249,26 +246,17 @@ const Place: React.FC<PanoProps> = ({ dataPano }) => {
             < div className="h-full w-full absolute" ref={panoRef} ></div>
 
             {/* INFOSPOT SCHOOL */}
-            {/* <div id="textInfo" ref={infoSchool}>
-                <div className="hotspot">
-                    <div className="out"></div>
-                    <div className="in"></div>
-                </div>
-                <div className="tooltip-content">
-                    <p>Dulu, anak SMA pemalu, Agy, naksir gadis populer, Yoriko. Saat kuliah, dia berjuang keras, berprestasi, dan berhasil memenangkan hati Yoriko. Cinta mereka mekar setelah melewati lika-liku karir kuliah.</p>
-                </div>
-            </div> */}
             <div ref={infoSchool}>
                 <Popover backdrop='opaque' placement="top" offset={20} >
                     <PopoverTrigger>
-                        <Button isIconOnly>
-                            <i className="ri-information-fill ri-xl"></i>
+                        <Button isIconOnly color='default'>
+                            <i className="ri-information-fill ri-2x text-sky-500"></i>
                         </Button>
                     </PopoverTrigger>
                     <PopoverContent>
-                        <div className="px-1 py-2 max-w-xs">
-                            <div className="text-small font-bold">Popover Content</div>
-                            <div className="text-tiny">This is the popover content Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quam cupiditate aliquam fugiat esse beatae! Nesciunt minus, veniam dolorum excepturi tenetur sed quibusdam cum qui optio, impedit est recusandae facere earum!</div>
+                        <div className="grid gap-4 px-1 py-2 max-w-xs">
+                            <div className="text-medium font-bold">Hai, <span className='capitalize'>{crush}</span></div>
+                            <div className="text-small">Aku mau berbagi pengalaman eksplorasi di dunia digital. Karena STEI sekarang banyak tugas, bisa {crush} anggap ini sebagai refreshing haha. Mari berkeliling ke taman di belakang.</div>
                         </div>
                     </PopoverContent>
                 </Popover>
@@ -278,14 +266,14 @@ const Place: React.FC<PanoProps> = ({ dataPano }) => {
             <div ref={infoPark}>
                 <Popover backdrop='opaque' placement="top" offset={20} >
                     <PopoverTrigger>
-                        <Button isIconOnly>
-                            <i className="ri-information-fill ri-xl"></i>
+                        <Button isIconOnly color='default'>
+                            <i className="ri-information-fill ri-2x text-sky-500"></i>
                         </Button>
                     </PopoverTrigger>
                     <PopoverContent>
-                        <div className="px-1 py-2 max-w-xs">
-                            <div className="text-small font-bold">Popover Content</div>
-                            <div className="text-tiny">This is the popover content Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quam cupiditate aliquam fugiat esse beatae! Nesciunt minus, veniam dolorum excepturi tenetur sed quibusdam cum qui optio, impedit est recusandae facere earum!</div>
+                        <div className="grid gap-4 px-1 py-2 max-w-xs">
+                            <div className="text-medium font-bold">Gimana Pemandangannya?</div>
+                            <div className="text-small">Semua pemandangan indah ini dibuat sama AI lho. Perkembangan inovasi yang pesat buat kita harus terus belajar ya. Tapi itu juga yang buat aku suka sama teknologi.</div>
                         </div>
                     </PopoverContent>
                 </Popover>
@@ -296,38 +284,34 @@ const Place: React.FC<PanoProps> = ({ dataPano }) => {
             {/* INFOSPOT CORE PARK */}
             <div ref={infoCorePark}>
                 <Button isIconOnly onPress={onOpen}>
-                    <i className="ri-vip-diamond-line ri-xl"></i>
+                    <i className="ri-flag-fill ri-2x text-yellow-500"></i>
                 </Button>
             </div>
             <Modal scrollBehavior='inside' isOpen={isOpen} onOpenChange={onOpenChange}>
                 <ModalContent>
                     {(onClose) => (
                         <>
-                            <ModalHeader className="flex flex-col gap-1">Modal Title</ModalHeader>
+                            <ModalHeader className="flex flex-col gap-1">Ice Cream?</ModalHeader>
                             <ModalBody>
                                 <p>
-                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                                    Nullam pulvinar risus non risus hendrerit venenatis.
-                                    Pellentesque sit amet hendrerit risus, sed porttitor quam.
+                                    Saat open house ITB 2023, aku melihat {crush} duduk dibarisan depanku dan itulah hari dimana aku memutuskan untuk masuk kesana.
                                 </p>
                                 <p>
-                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                                    Nullam pulvinar risus non risus hendrerit venenatis.
-                                    Pellentesque sit amet hendrerit risus, sed porttitor quam.
+                                    Ekspresimu ketika ditanya pertanyaan retorik oleh pembicaranya, membuatku kagum dan penasaran akan motivasi {crush} saat open house.
                                 </p>
                                 <p>
-                                    Magna exercitation reprehenderit magna aute tempor cupidatat consequat elit
-                                    dolor adipisicing. Mollit dolor eiusmod sunt ex incididunt cillum quis.
-                                    Velit duis sit officia eiusmod Lorem aliqua enim laboris do dolor eiusmod.
-                                    Et mollit incididunt nisi consectetur esse laborum eiusmod pariatur
-                                    proident Lorem eiusmod et. Culpa deserunt nostrud ad veniam.
+                                    Bagaimana jika aku tidak hadir pada open house tersebut? Bagaimana jika aku tidak duduk di depanmu? Mungkin kejadiannya akan berbeda.
+
+                                </p>
+                                <p>
+                                    Maka dari itu, sebagai bentuk terima kasih, bagaimana jika kutraktir es krim minggu depan di ciwalk hari sabtu, jam 14:00?
                                 </p>
                             </ModalBody>
                             <ModalFooter>
                                 <Button color="danger" variant="light" onPress={onClose} onClick={() => whatsappButton('0')}>
                                     No
                                 </Button>
-                                <Button color="primary" onPress={onClose} onClick={() => whatsappButton('1')}>
+                                <Button className='bg-sky-500' color="primary" onPress={onClose} onClick={() => whatsappButton('1')}>
                                     Yes
                                 </Button>
                             </ModalFooter>
