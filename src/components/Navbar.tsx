@@ -76,11 +76,19 @@ const Navbar = () => {
                 </NavbarItem>
             </NavbarContent>
 
-            <NavbarMenu>
-                <Link href={'/'} onClick={() => setIsMenuOpen(false)} className={`${pathname === '/' && window.location.hash != '#create' ? 'text-secondary' : 'text-white'}`}>Home</Link>
-                <Link href={'/#create'} onClick={() => setIsMenuOpen(false)} className={`${window.location.hash === '#create' ? 'text-secondary' : 'text-white'}`}>Create</Link>
-                <Link href={'/about'} onClick={() => setIsMenuOpen(false)} className={`${pathname === '/about' ? 'text-secondary' : 'text-white'}`}>About us</Link>
-            </NavbarMenu>
+            {
+
+                typeof window !== "undefined" ?
+                    // Client-side-only code
+                    <NavbarMenu>
+                        <Link href={'/'} onClick={() => setIsMenuOpen(false)} className={`${pathname === '/' && window.location.hash != '#create' ? 'text-secondary' : 'text-white'}`}>Home</Link>
+                        <Link href={'/#create'} onClick={() => setIsMenuOpen(false)} className={`${window.location.hash === '#create' ? 'text-secondary' : 'text-white'}`}>Create</Link>
+                        <Link href={'/about'} onClick={() => setIsMenuOpen(false)} className={`${pathname === '/about' ? 'text-secondary' : 'text-white'}`}>About us</Link>
+                    </NavbarMenu>
+                    : null
+            }
+
+
         </NavbarNextUI >
     )
 }
