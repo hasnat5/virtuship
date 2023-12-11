@@ -3,6 +3,7 @@ import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
 import './globals.css'
 import { Providers } from './providers'
+import { Analytics } from '@vercel/analytics/react';
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -41,11 +42,12 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="en">
+    <html className='scroll-smooth' lang="en">
       <body className={`no-touch ${inter.className} ${centra.variable} ${metafiz.variable}`}>
         <Providers>
           {children}
         </Providers>
+        <Analytics />
       </body>
     </html >
   )

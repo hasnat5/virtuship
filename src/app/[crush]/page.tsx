@@ -4,7 +4,7 @@ import { data } from './dataPano'
 
 const Crush = ({ params }: { params: { crush: string } }) => {
     return (
-        <main>
+        <main className='light'>
             <Suspense fallback={<p>Loading image</p>}>
                 <Place crush={params.crush} dataPano={data} />
             </Suspense>

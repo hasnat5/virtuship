@@ -218,7 +218,7 @@ const Place: React.FC<PanoProps> = ({ dataPano, crush }) => {
 
             const containerPark = panoScenes[1].scene.hotspotContainer();
             if (containerPark) {
-                containerPark.createHotspot(infoPark.current, { yaw: -0.533184046024548, pitch: 0.22814973791185622 });
+                containerPark.createHotspot(infoPark.current, { yaw: 0.3065692298970859, pitch: 0.08750032860305446 });
                 containerPark.createHotspot(infoCorePark.current, { yaw: 2.9785878977200912, pitch: 0.014763598534795364 });
 
             } else {
@@ -226,7 +226,7 @@ const Place: React.FC<PanoProps> = ({ dataPano, crush }) => {
             }
 
             // // CHECK COORDS
-            // var pano = panoRef.current;
+            var pano = panoRef.current;
             // pano.addEventListener('click', (e) => {
             //     var view = viewer.view();
             //     console.log(view.screenToCoordinates({ x: e.clientX, y: e.clientY }))
@@ -243,20 +243,20 @@ const Place: React.FC<PanoProps> = ({ dataPano, crush }) => {
 
     return (
         <>
-            < div className="h-full w-full absolute" ref={panoRef} ></div>
+            < div className="light h-full w-full absolute" ref={panoRef} ></div>
 
             {/* INFOSPOT SCHOOL */}
             <div ref={infoSchool}>
-                <Popover backdrop='opaque' placement="top" offset={20} >
+                <Popover className='light' backdrop='opaque' placement="top" offset={20} >
                     <PopoverTrigger>
-                        <Button isIconOnly color='default'>
+                        <Button isIconOnly className='bg-white'>
                             <i className="ri-information-fill ri-2x text-sky-500"></i>
                         </Button>
                     </PopoverTrigger>
-                    <PopoverContent>
-                        <div className="grid gap-4 px-1 py-2 max-w-xs">
-                            <div className="text-medium font-bold">Hai, <span className='capitalize'>{crush}</span></div>
-                            <div className="text-small">Aku mau berbagi pengalaman eksplorasi di dunia digital. Karena STEI sekarang banyak tugas, bisa {crush} anggap ini sebagai refreshing haha. Mari berkeliling ke taman di belakang.</div>
+                    <PopoverContent className='light light:text-black'>
+                        <div className="grid gap-2 px-1 py-2 max-w-xs">
+                            <div className="text-large font-bold font-sans">Hai, <span className='capitalize'>{crush.replace(/-/g, ' ')}</span></div>
+                            <div className="text-medium font-sans">Aku mau berbagi pengalaman eksplorasi di dunia digital. Karena STEI sekarang banyak tugas, bisa <span className='capitalize'>{crush.replace(/-/g, ' ')}</span> anggap ini sebagai refreshing haha. Mari berkeliling ke taman di belakang.</div>
                         </div>
                     </PopoverContent>
                 </Popover>
@@ -264,16 +264,16 @@ const Place: React.FC<PanoProps> = ({ dataPano, crush }) => {
 
             {/* INFOSPOT PARK */}
             <div ref={infoPark}>
-                <Popover backdrop='opaque' placement="top" offset={20} >
+                <Popover className='light' backdrop='opaque' placement="bottom" offset={20} >
                     <PopoverTrigger>
-                        <Button isIconOnly color='default'>
+                        <Button isIconOnly className='bg-white'>
                             <i className="ri-information-fill ri-2x text-sky-500"></i>
                         </Button>
                     </PopoverTrigger>
-                    <PopoverContent>
-                        <div className="grid gap-4 px-1 py-2 max-w-xs">
-                            <div className="text-medium font-bold">Gimana Pemandangannya?</div>
-                            <div className="text-small">Semua pemandangan indah ini dibuat sama AI lho. Perkembangan inovasi yang pesat buat kita harus terus belajar ya. Tapi itu juga yang buat aku suka sama teknologi.</div>
+                    <PopoverContent className='light light:text-black'>
+                        <div className="grid gap-2 px-1 py-2 max-w-xs">
+                            <div className="text-large font-bold font-sans">Gimana Pemandangannya?</div>
+                            <div className="text-medium font-sans">Semua pemandangan indah ini dibuat sama AI lho. Perkembangan inovasi yang pesat buat kita harus terus belajar ya. Tapi itu juga yang buat aku suka sama teknologi.</div>
                         </div>
                     </PopoverContent>
                 </Popover>
@@ -283,21 +283,21 @@ const Place: React.FC<PanoProps> = ({ dataPano, crush }) => {
 
             {/* INFOSPOT CORE PARK */}
             <div ref={infoCorePark}>
-                <Button isIconOnly onPress={onOpen}>
+                <Button isIconOnly className='bg-white' onPress={onOpen}>
                     <i className="ri-flag-fill ri-2x text-yellow-500"></i>
                 </Button>
             </div>
-            <Modal scrollBehavior='inside' isOpen={isOpen} onOpenChange={onOpenChange}>
+            <Modal className='light light:text-black' scrollBehavior='inside' isOpen={isOpen} onOpenChange={onOpenChange}>
                 <ModalContent>
                     {(onClose) => (
                         <>
-                            <ModalHeader className="flex flex-col gap-1">Ice Cream?</ModalHeader>
+                            <ModalHeader className="font-bold font-sans text-large">Ice Cream?</ModalHeader>
                             <ModalBody>
                                 <p>
-                                    Saat open house ITB 2023, aku melihat {crush} duduk dibarisan depanku dan itulah hari dimana aku memutuskan untuk masuk kesana.
+                                    Saat open house ITB 2023, aku melihat <span className='capitalize'>{crush.replace(/-/g, ' ')}</span> duduk dibarisan depanku dan itulah hari dimana aku memutuskan untuk masuk kesana.
                                 </p>
                                 <p>
-                                    Ekspresimu ketika ditanya pertanyaan retorik oleh pembicaranya, membuatku kagum dan penasaran akan motivasi {crush} saat open house.
+                                    Ekspresimu ketika ditanya pertanyaan retorik oleh pembicaranya, membuatku kagum dan penasaran akan motivasi <span className='capitalize'>{crush.replace(/-/g, ' ')}</span> saat open house.
                                 </p>
                                 <p>
                                     Bagaimana jika aku tidak hadir pada open house tersebut? Bagaimana jika aku tidak duduk di depanmu? Mungkin kejadiannya akan berbeda.
