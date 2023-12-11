@@ -169,7 +169,7 @@ export default function Home() {
                             title="Can I invite someone on Virtuship even if they don't have an account?"
                             indicator={({ isOpen }) => (isOpen ? <i className="ri-add-line ri-xl"></i> : <i className="ri-subtract-line ri-xl"></i>)} >
                             <p className="text-neutral">
-                                Yes, you can send an invitation to someone even if they don't have a Virtuship account. The platform provides options for guests to access an invitation date without requiring a full account setup.
+                                Yes, you can send an invitation to someone even if they don&apos;t have a Virtuship account. The platform provides options for guests to access an invitation date without requiring a full account setup.
                             </p>
                         </AccordionItem>
                         <AccordionItem
