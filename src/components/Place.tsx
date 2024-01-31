@@ -151,6 +151,16 @@ const Place: React.FC<PanoProps> = ({ dataPano, crush }) => {
                     var tooltip = document.createElement('div');
                     tooltip.classList.add('hotspot-tooltip');
                     tooltip.classList.add('link-hotspot-tooltip');
+
+                    // Set the data-fun attribute
+                    tooltip.setAttribute("data-fun", "fromRight");
+
+                    // Set the data-time attribute
+                    tooltip.setAttribute("data-time", "1000");
+
+                    // Set the data-easing attribute
+                    tooltip.setAttribute("data-easing", "linear");
+
                     const sceneData = findSceneDataById(hotspot.target);
                     if (sceneData) {
                         tooltip.innerHTML = sceneData.name;
